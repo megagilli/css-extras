@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CSS Extras - Visual Test Suite</title>
+	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="test.css">
+	<style>
+		:root {
+			--scheme: light;
+			--primary: #3b82f6;
+			--success: #10b981;
+			--warning: #f59e0b;
+			--error: #ef4444;
+			--text: #1f2937;
+			--bg: #ffffff;
+			--card-bg: #f9fafb;
+			--border: #e5e7eb;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--scheme: dark;
+				--text: #f3f4f6;
+				--bg: #111827;
+				--card-bg: #1f2937;
+				--border: #374151;
+			}
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: system-ui, -apple-system, sans-serif;
+			line-height: 1.6;
+			color: var(--text);
+			background: var(--bg);
+			padding: 2rem;
+		}
+
+		h1 {
+			color: var(--primary);
+			margin-bottom: 0.5rem;
+		}
+
+		.subtitle {
+			color: var(--text);
+			opacity: 0.7;
+			margin-bottom: 2rem;
+		}
+
+		.test-section {
+			margin-bottom: 3rem;
+			padding: 1.5rem;
+			background: var(--card-bg);
+			border-radius: 8px;
+			border: 1px solid var(--border);
+		}
+
+		.test-section h2 {
+			color: var(--primary);
+			margin-bottom: 1rem;
+			font-size: 1.5rem;
+		}
+
+		.test-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		.test-item {
+			padding: 1rem;
+			background: var(--bg);
+			border: 1px solid var(--border);
+			border-radius: 4px;
+		}
+
+		.test-label {
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+			font-size: 0.9rem;
+		}
+
+		.test-value {
+			font-family: monospace;
+			font-size: 0.85rem;
+			color: var(--primary);
+		}
+
+		.test-visual {
+			margin-top: 0.5rem;
+			padding: 0.5rem;
+			background: var(--card-bg);
+			border-radius: 4px;
+		}
+
+		/* Math function demos */
+		.demo-negate {
+			margin-left: --negate(50px);
+			background: var(--success);
+			color: white;
+			padding: 0.5rem;
+		}
+
+		.demo-abs {
+			width: --abs(-200px);
+			height: 30px;
+			background: var(--primary);
+		}
+
+		.demo-lerp {
+			width: --lerp(100px, 300px, 0.5);
+			height: 30px;
+			background: var(--warning);
+		}
+
+		/* Color function demos */
+		.demo-colors {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+			gap: 0.5rem;
+		}
+
+		.color-swatch {
+			height: 60px;
+			border-radius: 4px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 0.75rem;
+			font-weight: 600;
+		}
+
+		.demo-opacity {
+			background: --opacity(var(--primary), 50%);
+		}
+
+		.demo-tint {
+			background: --tint(var(--primary), 30%);
+		}
+
+		.demo-shade {
+			background: --shade(var(--primary), 30%);
+			color: white;
+		}
+
+		.demo-saturate {
+			background: --saturate(var(--primary), 1.5);
+		}
+
+		.demo-lighten {
+			background: --lighten(var(--primary), 20%);
+		}
+
+		.demo-rotate {
+			background: --rotate-hue(var(--primary), 90deg);
+		}
+
+		.demo-complement {
+			background: --complement(var(--primary));
+		}
+
+		.demo-invert {
+			background: --invert(var(--primary));
+		}
+
+		/* Typography demos */
+		.demo-fluid-type {
+			font-size: --fluid-type(14px, 24px, 320px, 1280px);
+			color: var(--primary);
+		}
+
+		.demo-modular-scale h3 {
+			margin: 0.5rem 0;
+		}
+
+		.demo-scale-0 {
+			font-size: --modular-scale(1rem, 1.25, 0);
+		}
+
+		.demo-scale-1 {
+			font-size: --modular-scale(1rem, 1.25, 1);
+		}
+
+		.demo-scale-2 {
+			font-size: --modular-scale(1rem, 1.25, 2);
+		}
+
+		.demo-scale-3 {
+			font-size: --modular-scale(1rem, 1.25, 3);
+		}
+
+		.demo-line-height {
+			font-size: 16px;
+			line-height: --line-height(16px, 1.8);
+			border-left: 3px solid var(--primary);
+			padding-left: 1rem;
+		}
+
+		/* Layout demos */
+		.demo-conditional-radius {
+			padding: 1rem;
+			background: --tint(var(--primary), 80%);
+			border-radius: --conditional-radius(1rem, 8px);
+			margin: 0 -1rem;
+		}
+
+		.demo-sidebar {
+			display: grid;
+			grid-template-columns: --sidebar-layout(200px, 50%);
+			gap: 1rem;
+			height: 100px;
+			max-width: 100%;
+			overflow: hidden;
+		}
+
+		.demo-sidebar > * {
+			background: --opacity(var(--primary), 20%);
+			padding: 1rem;
+			border-radius: 4px;
+		}
+
+		/* Spacing demos */
+		.demo-spacing {
+			display: flex;
+			gap: 0.5rem;
+			flex-wrap: wrap;
+		}
+
+		.spacing-box {
+			background: --opacity(var(--success), 20%);
+			border: 2px solid var(--success);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 0.75rem;
+			font-weight: 600;
+		}
+
+		.spacing-0 {
+			padding: --spacing(0);
+		}
+
+		.spacing-1 {
+			padding: --spacing(1);
+		}
+
+		.spacing-2 {
+			padding: --spacing(2);
+		}
+
+		.spacing-3 {
+			padding: --spacing(3);
+		}
+
+		.spacing-4 {
+			padding: --spacing(4);
+		}
+
+		/* Animation demos */
+		@keyframes bounce-demo {
+			0%, 100% {
+				transform: translateY(0);
+			}
+			50% {
+				transform: translateY(--negate(20px));
+			}
+		}
+
+		.demo-bounce {
+			display: inline-block;
+			padding: 0.5rem 1rem;
+			background: var(--primary);
+			color: white;
+			border-radius: 4px;
+			animation: bounce-demo 2s ease-in-out infinite;
+		}
+
+		.demo-elastic {
+			display: inline-block;
+			padding: 0.5rem 1rem;
+			background: var(--success);
+			color: white;
+			border-radius: 4px;
+			transition: transform 0.3s;
+		}
+
+		.demo-elastic:hover {
+			transform: scale(--elastic-ease(0.5, 1.2));
+		}
+
+		/* Shadow demos */
+		.demo-shadows {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 2rem;
+		}
+
+		.shadow-card {
+			padding: 1.5rem;
+			background: var(--bg);
+			border-radius: 8px;
+			text-align: center;
+		}
+
+		.shadow-smooth {
+			box-shadow: --smooth-shadow(black, 20px, 3);
+		}
+
+		.shadow-glow {
+			box-shadow: --glow(var(--primary), 20px, 0.3);
+		}
+
+		.shadow-colored {
+			box-shadow: --smooth-shadow(var(--error), 15px, 3);
+		}
+
+		/* Grid demos */
+		.demo-grid {
+			display: grid;
+			grid-template-columns: --auto-grid(150px, 4);
+			gap: 0.5rem;
+			margin-top: 1rem;
+		}
+
+		.grid-item {
+			background: --opacity(var(--warning), 30%);
+			padding: 1rem;
+			text-align: center;
+			border-radius: 4px;
+		}
+
+		/* Theme demos */
+		.demo-theme {
+			padding: 1rem;
+			background: --theme-color(var(--primary), 90%, 20%);
+			color: --light-dark(var(--text), white);
+			border-radius: 4px;
+			border-width: --light-dark(1px, 2px);
+			border-style: solid;
+			border-color: --opacity(var(--primary), 30%);
+		}
+
+		/* Interactive demo */
+		.interactive {
+			padding: 2rem;
+			background: linear-gradient(
+				135deg,
+				--tint(var(--primary), 20%),
+				--shade(var(--primary), 20%)
+			);
+			border-radius: --conditional-radius(1rem);
+			text-align: center;
+			transition: all 0.3s ease;
+			cursor: pointer;
+			color: white;
+			font-weight: 600;
+			box-shadow: --smooth-shadow(var(--primary), 10px, 3);
+		}
+
+		.interactive:hover {
+			transform: translateY(--negate(4px));
+			box-shadow: --glow(var(--primary), 30px, 0.4);
+			background: linear-gradient(
+				135deg,
+				var(--primary),
+				--rotate-hue(var(--primary), 30deg)
+			);
+		}
+	</style>
+</head>
+<body>
+	<h1>CSS Extras - Visual Test Suite</h1>
+	<p class="subtitle">Interactive demonstrations of all CSS custom functions</p>
+
+	<!-- Math & Number Functions -->
+	<section class="test-section">
+		<h2>Math & Number Functions</h2>
+		<div class="test-grid">
+			<div class="test-item">
+				<div class="test-label">--negate(50px)</div>
+				<div class="demo-negate">Margin-left: -50px</div>
+			</div>
+			<div class="test-item">
+				<div class="test-label">--abs(-200px)</div>
+				<div class="demo-abs"></div>
+				<div class="test-value">Width: 200px</div>
+			</div>
+			<div class="test-item">
+				<div class="test-label">--lerp(100px, 300px, 0.5)</div>
+				<div class="demo-lerp"></div>
+				<div class="test-value">Width: 200px</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Color Functions -->
+	<section class="test-section">
+		<h2>Color Functions</h2>
+		<div class="demo-colors">
+			<div class="color-swatch demo-opacity">50% Opacity</div>
+			<div class="color-swatch demo-tint">Tint 30%</div>
+			<div class="color-swatch demo-shade">Shade 30%</div>
+			<div class="color-swatch demo-saturate">Saturate 1.5x</div>
+			<div class="color-swatch demo-lighten">Lighten 20%</div>
+			<div class="color-swatch demo-rotate">Rotate 90°</div>
+			<div class="color-swatch demo-complement">Complement</div>
+			<div class="color-swatch demo-invert">Invert</div>
+		</div>
+	</section>
+
+	<!-- Typography Functions -->
+	<section class="test-section">
+		<h2>Typography Functions</h2>
+		<div class="test-grid">
+			<div class="test-item">
+				<div class="test-label">--fluid-type(14px, 24px, 320px, 1280px)</div>
+				<div class="demo-fluid-type">
+					This text scales with the viewport
+				</div>
+			</div>
+			<div class="test-item">
+				<div class="test-label">--modular-scale()</div>
+				<div class="demo-modular-scale">
+					<h3 class="demo-scale-0">Base (1rem)</h3>
+					<h3 class="demo-scale-1">Scale 1 (1.25rem)</h3>
+					<h3 class="demo-scale-2">Scale 2 (1.56rem)</h3>
+					<h3 class="demo-scale-3">Scale 3 (1.95rem)</h3>
+				</div>
+			</div>
+			<div class="test-item">
+				<div class="test-label">--line-height(16px, 1.8)</div>
+				<div class="demo-line-height">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Sed do eiusmod tempor incididunt ut labore.
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Layout Functions -->
+	<section class="test-section">
+		<h2>Layout Functions</h2>
+		<div class="test-grid">
+			<div class="test-item">
+				<div class="test-label">--conditional-radius(1rem)</div>
+				<div class="demo-conditional-radius">
+					Border radius removes at viewport edges
+				</div>
+			</div>
+			<div class="test-item">
+				<div class="test-label">--sidebar-layout(200px, 50%)</div>
+				<div class="demo-sidebar">
+					<div>Sidebar</div>
+					<div>Main Content</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Spacing Functions -->
+	<section class="test-section">
+		<h2>Spacing Functions</h2>
+		<div class="demo-spacing">
+			<div class="spacing-box spacing-0">--spacing(0)</div>
+			<div class="spacing-box spacing-1">--spacing(1)</div>
+			<div class="spacing-box spacing-2">--spacing(2)</div>
+			<div class="spacing-box spacing-3">--spacing(3)</div>
+			<div class="spacing-box spacing-4">--spacing(4)</div>
+		</div>
+	</section>
+
+	<!-- Animation Functions -->
+	<section class="test-section">
+		<h2>Animation Functions</h2>
+		<div class="test-grid">
+			<div class="test-item">
+				<div class="test-label">--bounce-ease()</div>
+				<div class="demo-bounce">Bouncing</div>
+			</div>
+			<div class="test-item">
+				<div class="test-label">--elastic-ease() (hover me)</div>
+				<div class="demo-elastic">Hover for elastic</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Filter Functions -->
+	<section class="test-section">
+		<h2>Filter Functions</h2>
+		<div class="demo-shadows">
+			<div class="shadow-card shadow-smooth">
+				<div class="test-label">--smooth-shadow()</div>
+				<p>Layered smooth shadow</p>
+			</div>
+			<div class="shadow-card shadow-glow">
+				<div class="test-label">--glow()</div>
+				<p>Glowing effect</p>
+			</div>
+			<div class="shadow-card shadow-colored">
+				<div class="test-label">Colored Shadow</div>
+				<p>With error color</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Grid Functions -->
+	<section class="test-section">
+		<h2>Grid Functions</h2>
+		<div class="test-label">--auto-grid(150px, 4)</div>
+		<div class="demo-grid">
+			<div class="grid-item">1</div>
+			<div class="grid-item">2</div>
+			<div class="grid-item">3</div>
+			<div class="grid-item">4</div>
+			<div class="grid-item">5</div>
+			<div class="grid-item">6</div>
+		</div>
+	</section>
+
+	<!-- Theme Functions -->
+	<section class="test-section">
+		<h2>Theme Functions</h2>
+		<div class="demo-theme">
+			<div class="test-label">Theme-aware styling</div>
+			<p>Uses --theme-color() for background and --light-dark() for text and borders.</p>
+			<p>Try switching your system theme to see changes!</p>
+		</div>
+	</section>
+
+	<!-- Interactive Demo -->
+	<section class="test-section">
+		<h2>Interactive Demo</h2>
+		<div class="interactive">
+			Hover me for combined effects!
+			<br>
+			Uses multiple CSS functions together
+		</div>
+	</section>
+</body>
+</html>

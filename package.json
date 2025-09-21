@@ -1,0 +1,100 @@
+{
+	"name": "css-extras",
+	"version": "0.0.1",
+	"description": "Useful CSS custom functions using the new @function rule",
+	"license": "MIT",
+	"repository": "sindresorhus/css-extras",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": "./index.css",
+	"scripts": {
+		"test": "xo && stylelint index.css && node test.js && node test-runner.js",
+		"test:visual": "open test-visual.html",
+		"docs": "node generate-docs.js"
+	},
+	"files": [
+		"index.css"
+	],
+	"keywords": [
+		"css",
+		"functions",
+		"custom-functions",
+		"at-function",
+		"helpers",
+		"helper",
+		"utility",
+		"util",
+		"utilities",
+		"color",
+		"typography",
+		"layout",
+		"spacing",
+		"animation",
+		"theme",
+		"responsive",
+		"grid",
+		"shadow"
+	],
+	"devDependencies": {
+		"puppeteer": "^24.22.0",
+		"stylelint": "^16.0.0",
+		"stylelint-config-xo": "^0.22.0",
+		"xo": "^0.59.0"
+	},
+	"stylelint": {
+		"rules": {
+			"at-rule-no-unknown": [
+				true,
+				{
+					"ignoreAtRules": [
+						"function",
+						"container"
+					]
+				}
+			],
+			"function-no-unknown": [
+				true,
+				{
+					"ignoreFunctions": [
+						"/^--/",
+						"if",
+						"style",
+						"color-scheme",
+						"pow",
+						"exp",
+						"sin"
+					]
+				}
+			],
+			"selector-type-no-unknown": null,
+			"property-no-unknown": [
+				true,
+				{
+					"ignoreProperties": [
+						"result"
+					]
+				}
+			],
+			"color-named": null,
+			"number-max-precision": 6,
+			"at-rule-empty-line-before": null,
+			"alpha-value-notation": null
+		}
+	},
+	"xo": {
+		"ignores": [
+			"examples"
+		]
+	},
+	"engines": {
+		"chrome": ">=128"
+	},
+	"browserslist": [
+		"Chrome >= 128"
+	]
+}

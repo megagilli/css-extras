@@ -1,0 +1,328 @@
+/**
+ * CSS-based test suite for css-extras functions.
+ * Uses CSS custom properties to test function outputs.
+ */
+
+@import 'index.css';
+
+:root {
+	/* Test inputs */
+	--test-number: 10px;
+	--test-negative: -10px;
+	--test-color: #3b82f6;
+	--test-progress: 0.5;
+}
+
+/* ===================================
+	 Math & Number Function Tests
+	 =================================== */
+
+.test-math {
+	/* --negate() tests */
+	--test-negate-positive: --negate(10px); /* Expected: -10px */
+	--test-negate-negative: --negate(-10px); /* Expected: 10px */
+	--test-negate-zero: --negate(0); /* Expected: 0 */
+
+	/* --abs() tests */
+	--test-abs-positive: --abs(10px); /* Expected: 10px */
+	--test-abs-negative: --abs(-10px); /* Expected: 10px */
+	--test-abs-zero: --abs(0); /* Expected: 0 */
+
+	/* --lerp() tests */
+	--test-lerp-half: --lerp(0px, 100px, 0.5); /* Expected: 50px */
+	--test-lerp-zero: --lerp(0px, 100px, 0); /* Expected: 0px */
+	--test-lerp-one: --lerp(0px, 100px, 1); /* Expected: 100px */
+
+	/* --map-range() tests */
+	--test-map-range: --map-range(50, 0, 100, 0px, 200px); /* Expected: 100px */
+	--test-map-range-min: --map-range(0, 0, 100, 10px, 20px); /* Expected: 10px */
+	--test-map-range-max: --map-range(100, 0, 100, 10px, 20px); /* Expected: 20px */
+}
+
+/* ===================================
+	 Color Function Tests
+	 =================================== */
+
+.test-color {
+	/* --opacity() tests */
+	--test-opacity-half: --opacity(red, 50%);
+	--test-opacity-full: --opacity(red, 100%);
+	--test-opacity-none: --opacity(red, 0);
+
+	/* --tint() tests */
+	--test-tint-light: --tint(blue, 20%);
+	--test-tint-default: --tint(blue);
+
+	/* --shade() tests */
+	--test-shade-dark: --shade(blue, 20%);
+	--test-shade-default: --shade(blue);
+
+	/* --saturate() tests */
+	--test-saturate-more: --saturate(red, 1.5);
+	--test-saturate-default: --saturate(red);
+
+	/* --lighten() tests */
+	--test-lighten: --lighten(blue, 20%);
+	--test-lighten-default: --lighten(blue);
+
+	/* --rotate-hue() tests */
+	--test-rotate-90: --rotate-hue(red, 90deg);
+	--test-rotate-180: --rotate-hue(red, 180deg);
+	--test-rotate-default: --rotate-hue(red);
+
+	/* --complement() tests */
+	--test-complement-red: --complement(red);
+	--test-complement-blue: --complement(blue);
+
+	/* --invert() tests */
+	--test-invert-white: --invert(white); /* Expected: black */
+	--test-invert-black: --invert(black); /* Expected: white */
+
+	/* --black() and --white() tests */
+	--test-black-50: --black(50%);
+	--test-black-default: --black();
+	--test-white-50: --white(50%);
+	--test-white-default: --white();
+
+	/* Color function clamping tests */
+	--test-saturate-clamped: --saturate(red, 10); /* Should clamp to 100% saturation */
+	--test-lighten-clamped: --lighten(red, 200%); /* Should clamp to 100% lightness */
+}
+
+/* ===================================
+	 Typography Function Tests
+	 =================================== */
+
+.test-typography {
+	/* --fluid-type() tests */
+	--test-fluid-header: --fluid-type(16px, 32px);
+	--test-fluid-body: --fluid-type(14px, 18px, 320px, 768px);
+
+	/* --modular-scale() tests */
+	--test-scale-0: --modular-scale(1rem, 1.25, 0); /* Expected: 1rem */
+	--test-scale-1: --modular-scale(1rem, 1.25, 1); /* Expected: 1.25rem */
+	--test-scale-2: --modular-scale(1rem, 1.25, 2); /* Expected: 1.5625rem */
+	--test-scale-default: --modular-scale();
+
+	/* --line-height-length() tests */
+	--test-line-height: --line-height-length(16px, 1.5); /* Expected: 24px */
+	--test-line-height-default: --line-height-length(16px);
+
+	/* --line-height-unitless() tests */
+	--test-line-height-unitless: --line-height-unitless(16px); /* Expected unitless value */
+}
+
+/* ===================================
+	 Layout Function Tests
+	 =================================== */
+
+.test-layout {
+	/* --conditional-radius() tests */
+	--test-radius: --conditional-radius(1rem);
+	--test-radius-custom: --conditional-radius(1rem, 8px);
+
+	/* --aspect-height() tests */
+	--test-aspect-square: --aspect-height(1, 100px, 100px);
+	--test-aspect-wide: --aspect-height(1.777, 100px, 100px); /* 16:9 */
+	--test-aspect-default: --aspect-height();
+}
+
+/* ===================================
+	 Spacing Function Tests
+	 =================================== */
+
+.test-spacing {
+	/* --spacing() tests */
+	--test-spacing-0: --spacing(0); /* Expected: 0.25rem */
+	--test-spacing-1: --spacing(1); /* Expected: 0.5rem */
+	--test-spacing-2: --spacing(2); /* Expected: 1rem */
+	--test-spacing-3: --spacing(3); /* Expected: 2rem */
+	--test-spacing-default: --spacing();
+
+	/* --container-padding() tests */
+	--test-container-padding: --container-padding(2rem, 1200px);
+	--test-container-padding-default: --container-padding();
+}
+
+/* ===================================
+	 Animation Function Tests
+	 =================================== */
+
+.test-animation {
+	/* --ease-out() tests */
+	--test-ease-out-0: --ease-out(0);
+	--test-ease-out-0-5: --ease-out(0.5);
+	--test-ease-out-1: --ease-out(1);
+
+	/* --elastic-ease() tests */
+	--test-elastic-0: --elastic-ease(0);
+	--test-elastic-0-5: --elastic-ease(0.5);
+	--test-elastic-custom: --elastic-ease(0.5, 1.5);
+}
+
+/* ===================================
+	 Utility Function Tests
+	 =================================== */
+
+.test-utility {
+	/* --fallback() tests */
+	--test-fallback-first: --fallback(10px, 20px, 30px); /* Expected: 10px */
+	--test-fallback-second: --fallback(var(--undefined), 20px, 30px); /* Expected: 20px */
+	--test-fallback-third: --fallback(var(--undefined), var(--undefined), 30px); /* Expected: 30px */
+
+	/* --px-to-rem() tests */
+	--test-px-to-rem-16: --px-to-rem(16px); /* Expected: 1rem */
+	--test-px-to-rem-24: --px-to-rem(24px); /* Expected: 1.5rem */
+	--test-px-to-rem-custom: --px-to-rem(20px, 20px); /* Expected: 1rem */
+
+	/* --rem-to-px() tests */
+	--test-rem-to-px-1: --rem-to-px(1rem); /* Expected: 16px */
+	--test-rem-to-px-1-5: --rem-to-px(1.5rem); /* Expected: 24px */
+	--test-rem-to-px-custom: --rem-to-px(1rem, 20px); /* Expected: 20px */
+}
+
+/* ===================================
+	 Grid Function Tests
+	 =================================== */
+
+.test-grid {
+	/* --auto-grid() tests */
+	--test-grid-auto: --auto-grid(250px);
+	--test-grid-limited: --auto-grid(250px, 4);
+	--test-grid-default: --auto-grid();
+
+	/* --grid-span() tests */
+	--test-span-3: --grid-span(3); /* Expected: span 3 */
+	--test-span-6: --grid-span(6, 12); /* Expected: span 6 */
+	--test-span-default: --grid-span();
+
+	/* --auto-grid() capping test */
+	--test-auto-grid-capped: --auto-grid(200px, 3); /* Should cap at 3 columns */
+}
+
+/* ===================================
+	 Filter Function Tests
+	 =================================== */
+
+.test-filter {
+	/* --smooth-shadow() tests */
+	--test-shadow: --smooth-shadow(black, 20px, 3);
+	--test-shadow-small: --smooth-shadow(blue, 10px, 3);
+	--test-shadow-default: --smooth-shadow();
+
+	/* --glow() tests */
+	--test-glow: --glow(cyan, 20px, 0.5);
+	--test-glow-intense: --glow(yellow, 30px, 0.8);
+	--test-glow-default: --glow();
+}
+
+/* ===================================
+	 Theme Function Tests
+	 =================================== */
+
+.test-theme {
+	/* Set up test scheme */
+	--scheme: light;
+
+	/* --light-dark() tests */
+	--test-light-dark-size: --light-dark(10px, 20px); /* Expected: 10px in light, 20px in dark */
+	--test-light-dark-color: --light-dark(white, black);
+
+	/* --theme-color() tests */
+	--test-theme-color: --theme-color(blue, 80%, 20%);
+	--test-theme-color-default: --theme-color(blue);
+}
+
+.test-theme-dark {
+	--scheme: dark;
+
+	/* Same tests but in dark mode */
+	--test-light-dark-size: --light-dark(10px, 20px); /* Expected: 20px */
+	--test-light-dark-color: --light-dark(white, black); /* Expected: black */
+}
+
+/* ===================================
+	 Visual Test Helpers
+	 =================================== */
+
+/* Use these classes to visually verify function outputs */
+.visual-test {
+	/* Math tests visual */
+	width: --abs(-100px); /* Should be 100px */
+	margin-left: --negate(20px); /* Should be -20px */
+	padding: --spacing(2); /* Should be 1rem */
+
+	/* Color tests visual */
+	background: --tint(blue, 20%);
+	color: --shade(red, 30%);
+	border: 2px solid --opacity(green, 50%);
+
+	/* Typography tests visual */
+	font-size: --fluid-type(14px, 20px, 320px, 1280px);
+	line-height: --line-height-length(16px, 1.5);
+
+	/* Shadow tests visual */
+	box-shadow: --smooth-shadow(black, 10px, 3);
+}
+
+.visual-test:hover {
+	/* Animation test */
+	transform: scale(--elastic-ease(0.5, 1.2));
+	background: --complement(blue);
+}
+
+/* ===================================
+	 Test Assertions (for automated testing)
+	 =================================== */
+
+/* These can be read by JavaScript to verify outputs */
+.test-assertions {
+	/* Store expected vs actual for JS validation */
+	--assert-negate: {
+		--input: 10px;
+		--expected: -10px;
+		--actual: --negate(10px);
+	};
+
+	--assert-abs: {
+		--input: -10px;
+		--expected: 10px;
+		--actual: --abs(-10px);
+	};
+
+	--assert-lerp: {
+		--from: 0px;
+		--to: 100px;
+		--progress: 0.5;
+		--expected: 50px;
+		--actual: --lerp(0px, 100px, 0.5);
+	};
+
+	--assert-spacing: {
+		--level: 2;
+		--expected: 1rem;
+		--actual: --spacing(2);
+	};
+}
+
+/* ===================================
+	 Edge Case Tests
+	 =================================== */
+
+.test-edge-cases {
+	/* Zero value tests */
+	--test-negate-zero: --negate(0);
+	--test-abs-zero: --abs(0);
+	--test-spacing-zero: --spacing(0);
+
+	/* Large value tests */
+	--test-spacing-large: --spacing(10);
+
+	/* Boundary tests */
+	--test-lerp-start: --lerp(10px, 50px, 0);
+	--test-lerp-end: --lerp(10px, 50px, 1);
+
+	/* Opacity edge cases */
+	--test-opacity-zero: --opacity(red, 0%);
+	--test-opacity-full: --opacity(red, 100%);
+}
