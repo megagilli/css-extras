@@ -2,7 +2,7 @@
 
 Complete reference for all CSS custom functions in css-extras.
 
-**Total functions:** 35
+**Total functions:** 36
 
 ---
 
@@ -88,6 +88,27 @@ Maps a value from one range to another.
 
 ```css
 font-size: --map-range(50vw, 320px, 1920px, 14px, 24px);
+```
+
+---
+
+## `--ratio()`
+
+Return the ratio of the first value to the second value.
+
+### Parameters
+
+- **`--value`** (`CalcSum`): Input value.
+- **`--to-value`** (`CalcSum`): Another input value.
+
+### Returns
+
+`Number`: The ratio between two values.
+
+### Example
+
+```css
+scale: --ratio(16px, 1em);
 ```
 
 ---

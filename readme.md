@@ -57,9 +57,9 @@ Then use any of the functions in your CSS:
 
 ## Functions
 
-This package includes 35 CSS custom functions organized into these categories:
+This package includes 36 CSS custom functions organized into these categories:
 
-- **Math & Number** - `--negate()`, `--abs()`, `--lerp()`, `--map-range()`
+- **Math & Number** - `--negate()`, `--abs()`, `--lerp()`, `--map-range()`, `--ratio()`
 - **Color** - `--opacity()`, `--tint()`, `--shade()`, `--saturate()`, `--lighten()`, `--rotate-hue()`, `--complement()`, `--invert()`, `--black()`, `--white()`
 - **Typography** - `--fluid-type()`, `--modular-scale()`, `--line-height-length()`, `--line-height-ratio()`, `--line-height-unitless()`
 - **Layout** - `--sidebar-layout()`, `--conditional-radius()`, `--responsive-value()`, `--aspect-height()`

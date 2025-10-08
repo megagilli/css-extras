@@ -121,6 +121,26 @@
 			background: var(--warning);
 		}
 
+		.demo-ratio {
+			width: 200px;
+			height: 30px;
+			background: var(--error);
+			container-type: size;
+			
+			&::after {
+				scale: --ratio(100cqw, 20px) 1;
+				transform-origin: left;
+				content: "a";
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: white;
+				width: 20px;
+				height: 100%;
+				background: var(--success);
+			}
+		}
+
 		/* Color function demos */
 		.demo-colors {
 			display: grid;
@@ -397,6 +417,11 @@
 				<div class="test-label">--lerp(100px, 300px, 0.5)</div>
 				<div class="demo-lerp"></div>
 				<div class="test-value">Width: 200px</div>
+			</div>
+			<div class="test-item">
+				<div class="test-label">--ratio(100cqw, 20px)</div>
+				<div class="demo-ratio"></div>
+				<div class="test-value">Scale: 10 1</div>
 			</div>
 		</div>
 	</section>

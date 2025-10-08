@@ -60,6 +60,18 @@ Maps a value from one range to another.
 	result: calc(var(--out-min) + (var(--out-max) - var(--out-min)) * var(--progress));
 }
 
+/**
+Returns the ratio of two values. Supports values with different units, unlike regular division.
+
+@param {CalcSum} --value - Input value.
+@param {CalcSum} --to-value - Another input value.
+@returns {Number} The ratio between two values.
+@example scale: --ratio(16px, 1em);
+*/
+@function --ratio(--value, --to-value) {
+	result: tan(atan2(var(--value), var(--to-value)));
+}
+
 /* ===================================
 	 Color Functions
 	 =================================== */

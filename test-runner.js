@@ -51,6 +51,24 @@ const tests = [
 		property: '--test-map-range',
 		expected: 'calc(0px + (200px - 0px) * clamp(0, calc((50 - 0) / (100 - 0)), 1))',
 	},
+	{
+		name: '--ratio(8px * 2, 0.55em + 0.45em)',
+		selector: '.test-math',
+		property: '--test-ratio-dimension',
+		expected: 'tan(atan2(8px * 2, 0.55em + 0.45em))',
+	},
+	{
+		name: '--ratio(8 * 2, 5.5 + 4.5)',
+		selector: '.test-math',
+		property: '--test-ratio-number',
+		expected: 'tan(atan2(8 * 2, 5.5 + 4.5))',
+	},
+	{
+		name: '--ratio(80% * 2, 55% + 45%)',
+		selector: '.test-math',
+		property: '--test-ratio-percentage',
+		expected: 'tan(atan2(80% * 2, 55% + 45%))',
+	},
 
 	// Color tests
 	{

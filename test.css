@@ -37,6 +37,12 @@
 	--test-map-range: --map-range(50, 0, 100, 0px, 200px); /* Expected: 100px */
 	--test-map-range-min: --map-range(0, 0, 100, 10px, 20px); /* Expected: 10px */
 	--test-map-range-max: --map-range(100, 0, 100, 10px, 20px); /* Expected: 20px */
+
+	/* --ratio() tests */
+	font-size: 10px;
+	--test-ratio-dimension: --ratio(8px * 2, 0.55em + 0.45em); /* Expected: 1.6 */
+	--test-ratio-number: --ratio(8 * 2, 5.5 + 4.5); /* Expected: 1.6 */
+	--test-ratio-percentage: --ratio(80% * 2, 55% + 45%); /* Expected: 1.6 */
 }
 
 /* ===================================
