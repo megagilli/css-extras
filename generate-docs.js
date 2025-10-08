@@ -98,7 +98,7 @@ function parseComment(comment) {
 			documentation.example = line.replace('@example', '').trim();
 			currentSection = 'example';
 		} else if (currentSection === 'description' && line && !line.startsWith('@')) {
-			documentation.description += (documentation.description ? ' ' : '') + line;
+			documentation.description += (documentation.description ? '\n' : '') + line;
 		} else if (currentSection === 'example' && line && !line.startsWith('@')) {
 			documentation.example += '\n' + line;
 		}

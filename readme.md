@@ -82,7 +82,7 @@ This package includes 35 CSS custom functions organized into these categories:
 	border-radius: --conditional-radius(1rem);
 
 	/* Smooth shadow */
-	box-shadow: --smooth-shadow(rgba(0 0 0 / 0.2), 16px, 3);
+	box-shadow: --smooth-shadow(rgb(0 0 0 / 0.2), 16px, 3);
 
 	/* Fluid spacing */
 	padding: --spacing(4);

@@ -115,7 +115,8 @@ background: --opacity(blue, 50%);
 
 ## `--tint()`
 
-Lightens a color by mixing with white. Uses OKLAB color space for perceptually uniform mixing.
+Lightens a color by mixing with white.
+Uses OKLAB color space for perceptually uniform mixing.
 
 ### Parameters
 
@@ -136,7 +137,8 @@ background: --tint(blue, 20%);
 
 ## `--shade()`
 
-Darkens a color by mixing with black. Uses OKLAB color space for perceptually uniform mixing.
+Darkens a color by mixing with black.
+Uses OKLAB color space for perceptually uniform mixing.
 
 ### Parameters
 
@@ -157,7 +159,8 @@ background: --shade(blue, 20%);
 
 ## `--saturate()`
 
-Adjusts color saturation. Uses OKLCH color space for perceptually uniform chroma adjustment. Chroma is clamped to 0.4 for safe display.
+Adjusts color saturation.
+Uses OKLCH color space for perceptually uniform chroma adjustment. Chroma is clamped to 0.4 for safe display.
 
 ### Parameters
 
@@ -178,7 +181,8 @@ color: --saturate(red, 1.5);
 
 ## `--lighten()`
 
-Adjusts color lightness. Uses OKLCH color space for perceptually uniform lightness adjustment. Maintains chroma independently.
+Adjusts color lightness.
+Uses OKLCH color space for perceptually uniform lightness adjustment. Maintains chroma independently.
 
 ### Parameters
 
@@ -199,7 +203,8 @@ background: --lighten(blue, 20%);
 
 ## `--rotate-hue()`
 
-Rotates the hue of a color. Uses OKLCH color space for perceptually uniform hue rotation.
+Rotates the hue of a color.
+Uses OKLCH color space for perceptually uniform hue rotation.
 
 ### Parameters
 
@@ -220,7 +225,8 @@ background: --rotate-hue(blue, 180deg);
 
 ## `--complement()`
 
-Returns the complementary color. Uses OKLCH color space for perceptually accurate complementary colors.
+Returns the complementary color.
+Uses OKLCH color space for perceptually accurate complementary colors.
 
 ### Parameters
 
@@ -300,7 +306,8 @@ background: --white(90%);
 
 ## `--fluid-type()`
 
-Creates fluid typography that scales with viewport. NOTE: This function is mathematically equivalent to `--responsive-value()` but optimized for typography. Use this for `font-size`, `--responsive-value()` for other properties.
+Creates fluid typography that scales with viewport.
+NOTE: This function is mathematically equivalent to `--responsive-value()` but optimized for typography. Use this for `font-size`, `--responsive-value()` for other properties.
 
 ### Parameters
 
@@ -345,7 +352,8 @@ font-size: --modular-scale(1rem, 1.25, 3);
 
 ## `--line-height-length()`
 
-Calculates line height as a length value based on font size. Returns a length (e.g., 24px) rather than a unitless ratio. Use this when you need an absolute line height value.
+Calculates line height as a length value based on font size.
+Returns a length (e.g., 24px) rather than a unitless ratio. Use this when you need an absolute line height value.
 
 ### Parameters
 
@@ -366,7 +374,8 @@ line-height: --line-height-length(16px, 1.6);
 
 ## `--line-height-ratio()`
 
-Calculates line height as a unitless ratio. Returns a number (e.g., 1.5) which is recommended for better inheritance in CSS.
+Calculates line height as a unitless ratio.
+Returns a number (e.g., 1.5) which is recommended for better inheritance in CSS.
 
 ### Parameters
 
@@ -387,7 +396,8 @@ line-height: --line-height-ratio(24px, 16px);
 
 ## `--line-height-unitless()`
 
-Creates unitless line height from font size (recommended for better inheritance). NOTE: Only works correctly with pixel font sizes. For rem/em values, use `--line-height()` instead.
+Creates unitless line height from font size (recommended for better inheritance).
+NOTE: Only works correctly with pixel font sizes. For rem/em values, use `--line-height()` instead.
 
 ### Parameters
 
@@ -450,7 +460,8 @@ border-radius: --conditional-radius(1rem, 8px);
 
 ## `--responsive-value()`
 
-Creates a responsive value that scales between two sizes. NOTE: This function is mathematically equivalent to `--fluid-type()` but uses a simpler lerp-based approach. Use this for spacing/sizing, `--fluid-type()`for typography.
+Creates a responsive value that scales between two sizes.
+NOTE: This function is mathematically equivalent to `--fluid-type()` but uses a simpler lerp-based approach. Use this for spacing/sizing, `--fluid-type()`for typography.
 
 ### Parameters
 
@@ -495,7 +506,8 @@ height: --aspect-height(16/9, 100vw, 100vh);
 
 ## `--spacing()`
 
-Creates consistent spacing based on a scale. Recommended range: 0-10. Higher values create exponentially larger spacing.
+Creates consistent spacing based on a scale.
+Recommended range: 0-10. Higher values create exponentially larger spacing.
 
 ### Parameters
 
@@ -641,7 +653,8 @@ grid-template-columns: --auto-grid(250px, 4);
 
 ## `--grid-span()`
 
-Creates a CSS grid span value. Ensures the span is an integer value.
+Creates a CSS grid span value.
+Ensures the span is an integer value.
 
 ### Parameters
 
@@ -662,7 +675,8 @@ grid-column: --grid-span(3, 12);
 
 ## `--smooth-shadow()`
 
-Creates a smooth shadow. Generates 3 shadow layers. The spread-factor controls how distributed the shadows are.
+Creates a smooth shadow.
+Generates 3 shadow layers. The spread-factor controls how distributed the shadows are.
 
 ### Parameters
 
@@ -706,7 +720,11 @@ box-shadow: --glow(cyan, 10px, 0.5);
 
 ## `--light-dark()`
 
-Theme-aware value switcher for light/dark mode. Uses CSS `if()` with color-scheme query. Requires `color-scheme: light dark` on `:root`. Works with ANY value type (colors, lengths, etc.), not just colors.
+Theme-aware value switcher for light/dark mode.
+Uses CSS `if()` with color-scheme query. Requires `color-scheme: light dark` on `:root`.
+Works with ANY value type (colors, lengths, etc.), not just colors.
+> [!NOTE]
+> CSS has a native [`light-dark()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark) function for colors. The custom `--light-dark()` function is more powerful as it works with any value type, not just colors.
 
 ### Parameters
 
@@ -727,7 +745,10 @@ padding: --light-dark(0.75rem, 1rem);
 
 ## `--theme-color()`
 
-Creates a theme-aware color with automatic adjustment. Uses CSS `if()` with color-scheme query. Requires `color-scheme: light dark` on `:root`. In light mode, mixes the base color with white (default 85% white). In dark mode, mixes the base color with black (default 15% black).
+Creates a theme-aware color with automatic adjustment.
+Uses CSS `if()` with color-scheme query. Requires `color-scheme: light dark` on `:root`.
+In light mode, mixes the base color with white (default 85% white).
+In dark mode, mixes the base color with black (default 15% black).
 
 ### Parameters
 

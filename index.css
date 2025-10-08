@@ -498,6 +498,9 @@ Theme-aware value switcher for light/dark mode.
 Uses CSS `if()` with color-scheme query. Requires `color-scheme: light dark` on `:root`.
 Works with ANY value type (colors, lengths, etc.), not just colors.
 
+> [!NOTE]
+> CSS has a native [`light-dark()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark) function for colors. The custom `--light-dark()` function is more powerful as it works with any value type, not just colors.
+
 @param {Any} --light - Value for light mode.
 @param {Any} --dark - Value for dark mode.
 @returns {Any} Theme-appropriate value.
