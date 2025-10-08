@@ -94,7 +94,7 @@ font-size: --map-range(50vw, 320px, 1920px, 14px, 24px);
 
 ## `--ratio()`
 
-Return the ratio of the first value to the second value.
+Returns the ratio of two values. Supports values with different units, unlike regular division.
 
 ### Parameters
 
@@ -482,7 +482,7 @@ border-radius: --conditional-radius(1rem, 8px);
 ## `--responsive-value()`
 
 Creates a responsive value that scales between two sizes.
-NOTE: This function is mathematically equivalent to `--fluid-type()` but uses a simpler lerp-based approach. Use this for spacing/sizing, `--fluid-type()`for typography.
+NOTE: This function is mathematically equivalent to `--fluid-type()` but uses a simpler lerp-based approach. Use this for spacing/sizing, `--fluid-type()` for typography.
 
 ### Parameters
 
@@ -701,9 +701,9 @@ Generates 3 shadow layers. The spread-factor controls how distributed the shadow
 
 ### Parameters
 
-- **`--color`** (`Color`): Shadow color. Default: `rgb(0 0 0 / 0.2`
-- **`--size`** (`Length`): Shadow size.
-- **`--spread-factor`** (`Number`): Controls shadow distribution (higher = tighter shadows).
+- **`--color`** (`Color`): Shadow color. Default: `rgb(0 0 0 / 0.2)`
+- **`--size`** (`Length`): Shadow size. Default: `12px`
+- **`--spread-factor`** (`Number`): Controls shadow distribution (higher = tighter shadows). Default: `3`
 
 ### Returns
 

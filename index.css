@@ -313,7 +313,7 @@ Conditional border radius that removes at viewport edges.
 /**
 Creates a responsive value that scales between two sizes.
 
-NOTE: This function is mathematically equivalent to `--fluid-type()` but uses a simpler lerp-based approach. Use this for spacing/sizing, `--fluid-type()`for typography.
+NOTE: This function is mathematically equivalent to `--fluid-type()` but uses a simpler lerp-based approach. Use this for spacing/sizing, `--fluid-type()` for typography.
 
 @param {Length} --small - Minimum value.
 @param {Length} --large - Maximum value.

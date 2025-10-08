@@ -11,7 +11,7 @@ Parse CSS file and extract function documentation.
 */
 function parseCSSFunctions(cssContent) {
 	const functions = [];
-	const functionRegex = /@function\s+(--[\w-]+)\s*\(([^)]*)\)/g;
+	const functionRegex = /@function\s+(--[\w-]+)\s*\(([\s\S]*?)\)\s*{/g;
 	const commentRegex = /\/\*\*([\s\S]*?)\*\//g;
 
 	let match;
