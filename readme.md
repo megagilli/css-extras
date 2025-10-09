@@ -11,7 +11,7 @@ No build step required! Feel free to copy-paste what you need. No credit needed.
 
 ## Requirements
 
-Currently only supported in Chrome 128+. The `@function` rule is going through the W3C standardization process and will be available in other browsers soon.
+Currently only supported in Chrome 141+. The `@function` rule is going through the W3C standardization process and will be available in other browsers soon.
 
 ## Install
 
@@ -53,7 +53,7 @@ Then use any of the functions in your CSS:
 }
 ```
 
-[**Demo**](https://sindresorhus.com/css-extras/example.html) *(requires Chrome 128+)*
+[**Demo**](https://sindresorhus.com/css-extras/example.html) *(requires Chrome 141+)*
 
 ## Functions
 
