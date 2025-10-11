@@ -57,20 +57,20 @@ Then use any of the functions in your CSS:
 
 ## Functions
 
-This package includes 36 CSS custom functions organized into these categories:
+This package includes ~50 CSS custom functions organized into these categories:
 
-- **Math & Number** - `--negate()`, `--abs()`, `--lerp()`, `--map-range()`, `--ratio()`
-- **Color** - `--opacity()`, `--tint()`, `--shade()`, `--saturate()`, `--lighten()`, `--rotate-hue()`, `--complement()`, `--invert()`, `--black()`, `--white()`
-- **Typography** - `--fluid-type()`, `--modular-scale()`, `--line-height-length()`, `--line-height-ratio()`, `--line-height-unitless()`
-- **Layout** - `--sidebar-layout()`, `--conditional-radius()`, `--responsive-value()`, `--aspect-height()`
-- **Spacing** - `--spacing()`, `--container-padding()`
-- **Animation** - `--ease-out()`, `--elastic-ease()`
-- **Grid** - `--auto-grid()`, `--grid-span()`
-- **Filter** - `--smooth-shadow()`, `--glow()`
-- **Theme** - `--light-dark()`, `--theme-color()`
-- **Utility** - `--px-to-rem()`, `--rem-to-px()`
+- **Math & Number** - Mathematical operations and calculations
+- **Color** - Color manipulation, generation, and accessibility helpers
+- **Typography** - Fluid type scaling and line height
+- **Layout** - Responsive layouts and aspect ratios
+- **Spacing** - Consistent spacing systems
+- **Animation** - Easing functions
+- **Grid** - Responsive grid helpers
+- **Filter** - Shadows and effects
+- **Theme** - Light/dark mode utilities
+- **Utility** - Unit conversion and helpers
 
-**📖 [Complete function reference](docs/functions.md)**
+**[Complete function reference](docs/functions.md)**
 
 ## Examples
 

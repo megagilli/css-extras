@@ -291,102 +291,110 @@ Run tests using Puppeteer.
 */
 async function runTests() {
 	const testHtmlPath = createTestHTML();
-	const browser = await puppeteer.launch({
-		headless: true,
-		args: ['--no-sandbox', '--disable-setuid-sandbox'],
-	});
+	let browser;
 
-	const page = await browser.newPage();
+	try {
+		browser = await puppeteer.launch({
+			headless: true,
+			args: ['--no-sandbox', '--disable-setuid-sandbox'],
+		});
 
-	// Navigate to test page
-	await page.goto(`file://${testHtmlPath}`, {
-		waitUntil: 'networkidle0',
-	});
+		const page = await browser.newPage();
 
-	console.log('🧪 Running CSS function tests...\n');
+		// Navigate to test page
+		await page.goto(`file://${testHtmlPath}`, {
+			waitUntil: 'networkidle0',
+		});
 
-	let passed = 0;
-	let failed = 0;
-	const failures = [];
+		console.log('🧪 Running CSS function tests...\n');
 
-	// Run each test
-	for (const test of tests) {
-		try {
-			// eslint-disable-next-line no-await-in-loop
-			const result = await page.evaluate((selector, property) => {
-				// eslint-disable-next-line no-undef
-				const element = document.querySelector(selector);
-				if (!element) {
-					return null;
+		let passed = 0;
+		let failed = 0;
+		const failures = [];
+
+		// Run each test
+		for (const test of tests) {
+			try {
+				// eslint-disable-next-line no-await-in-loop
+				const result = await page.evaluate((selector, property) => {
+					// eslint-disable-next-line no-undef
+					const element = document.querySelector(selector);
+					if (!element) {
+						return null;
+					}
+
+					// eslint-disable-next-line no-undef
+					const computed = getComputedStyle(element);
+					return computed.getPropertyValue(property);
+				}, test.selector, test.property);
+
+				let isPass = false;
+
+				if (test.isRegex && test.expected instanceof RegExp) {
+					isPass = test.expected.test(result);
+				} else if (typeof test.expected === 'string') {
+					// Normalize values for comparison
+					const normalizedResult = normalizeValue(result);
+					const normalizedExpected = normalizeValue(test.expected);
+					isPass = normalizedResult === normalizedExpected;
 				}
 
-				// eslint-disable-next-line no-undef
-				const computed = getComputedStyle(element);
-				return computed.getPropertyValue(property);
-			}, test.selector, test.property);
-
-			let isPass = false;
-
-			if (test.isRegex && test.expected instanceof RegExp) {
-				isPass = test.expected.test(result);
-			} else if (typeof test.expected === 'string') {
-				// Normalize values for comparison
-				const normalizedResult = normalizeValue(result);
-				const normalizedExpected = normalizeValue(test.expected);
-				isPass = normalizedResult === normalizedExpected;
-			}
-
-			if (isPass) {
-				console.log(`✅ ${test.name}`);
-				passed++;
-			} else {
-				console.log(`❌ ${test.name}`);
-				console.log(`   Expected: ${test.expected}`);
-				console.log(`   Got: ${result}`);
+				if (isPass) {
+					console.log(`✅ ${test.name}`);
+					passed++;
+				} else {
+					console.log(`❌ ${test.name}`);
+					console.log(`   Expected: ${test.expected}`);
+					console.log(`   Got: ${result}`);
+					failed++;
+					failures.push({
+						test: test.name,
+						expected: test.expected.toString(),
+						actual: result,
+					});
+				}
+			} catch (error) {
+				console.log(`❌ ${test.name} - Error: ${error.message}`);
 				failed++;
 				failures.push({
 					test: test.name,
-					expected: test.expected.toString(),
-					actual: result,
+					error: error.message,
 				});
 			}
-		} catch (error) {
-			console.log(`❌ ${test.name} - Error: ${error.message}`);
-			failed++;
-			failures.push({
-				test: test.name,
-				error: error.message,
-			});
 		}
-	}
 
-	await browser.close();
+		// Summary
+		console.log('\n' + '='.repeat(50));
+		console.log('\n📊 Test Results:');
+		console.log(`   Passed: ${passed}/${tests.length}`);
+		console.log(`   Failed: ${failed}/${tests.length}`);
 
-	// Summary
-	console.log('\n' + '='.repeat(50));
-	console.log('\n📊 Test Results:');
-	console.log(`   Passed: ${passed}/${tests.length}`);
-	console.log(`   Failed: ${failed}/${tests.length}`);
+		if (failures.length > 0) {
+			console.log('\n❌ Failed tests:');
+			for (const failure of failures) {
+				console.log(`   - ${failure.test}`);
+				if (failure.expected) {
+					console.log(`     Expected: ${failure.expected}`);
+					console.log(`     Actual: ${failure.actual}`);
+				}
 
-	if (failures.length > 0) {
-		console.log('\n❌ Failed tests:');
-		for (const failure of failures) {
-			console.log(`   - ${failure.test}`);
-			if (failure.expected) {
-				console.log(`     Expected: ${failure.expected}`);
-				console.log(`     Actual: ${failure.actual}`);
-			}
-
-			if (failure.error) {
-				console.log(`     Error: ${failure.error}`);
+				if (failure.error) {
+					console.log(`     Error: ${failure.error}`);
+				}
 			}
 		}
+
+		return failed === 0;
+	} finally {
+		// Always close browser and clean up test HTML
+		if (browser) {
+			await browser.close();
+		}
+
+		if (fs.existsSync(testHtmlPath)) {
+			fs.unlinkSync(testHtmlPath);
+		}
 	}
-
-	// Clean up test HTML
-	fs.unlinkSync(testHtmlPath);
-
-	return failed === 0;
 }
 
 /**

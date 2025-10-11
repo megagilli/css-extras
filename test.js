@@ -17,22 +17,65 @@ test('CSS file exists and is valid', () => {
 
 	// Check for required @function declarations
 	const functions = [
+		// Math & Number
 		'--negate',
 		'--abs',
 		'--lerp',
+		'--map-range',
+		'--ratio',
+		'--sign',
+		'--round-to',
+		'--floor-to',
+		'--ceil-to',
+		'--hypot',
+		// Color
 		'--opacity',
 		'--tint',
 		'--shade',
+		'--saturate',
+		'--lighten',
+		'--darken',
+		'--rotate-hue',
+		'--complement',
+		'--invert',
+		'--grayscale',
+		'--text-on',
+		'--opaque',
+		'--mix',
+		'--triadic',
+		'--tetradic',
+		'--black',
+		'--white',
+		// Typography
 		'--fluid-type',
 		'--modular-scale',
+		'--line-height-length',
+		'--line-height-ratio',
+		'--line-height-unitless',
+		// Layout
 		'--sidebar-layout',
 		'--conditional-radius',
+		'--responsive-value',
+		'--aspect-height',
+		'--aspect-width',
+		// Spacing
 		'--spacing',
+		'--container-padding',
+		// Animation
+		'--ease-out',
+		'--elastic-ease',
+		// Utility
+		'--px-to-rem',
+		'--rem-to-px',
+		// Grid
 		'--auto-grid',
+		'--grid-span',
+		// Filter
 		'--smooth-shadow',
+		'--glow',
+		// Theme
 		'--light-dark',
 		'--theme-color',
-		'--px-to-rem',
 	];
 
 	for (const functionName of functions) {

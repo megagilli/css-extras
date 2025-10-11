@@ -236,6 +236,84 @@
 			background: --invert(var(--primary-color));
 		}
 
+		/* Contrast Demo (--text-on) */
+		.contrast-grid {
+			display: grid;
+			grid-template-columns: --auto-grid(200px, 3);
+			gap: --spacing(3);
+			margin: --spacing(4) 0;
+		}
+
+		.contrast-card {
+			padding: --spacing(4);
+			border-radius: --conditional-radius(0.5rem);
+			text-align: center;
+			font-weight: 600;
+			font-size: --px-to-rem(18px);
+			min-height: 120px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: --spacing(2);
+		}
+
+		.contrast-card code {
+			font-size: --px-to-rem(12px);
+			font-weight: 400;
+			opacity: 0.8;
+		}
+
+		/* Different backgrounds for contrast testing */
+		.contrast-white {
+			background: white;
+			color: --text-on(white);
+		}
+
+		.contrast-light {
+			background: #e0e7ff;
+			color: --text-on(#e0e7ff);
+		}
+
+		.contrast-blue {
+			background: #3b82f6;
+			color: --text-on(#3b82f6);
+		}
+
+		.contrast-purple {
+			background: #8b5cf6;
+			color: --text-on(#8b5cf6);
+		}
+
+		.contrast-green {
+			background: #10b981;
+			color: --text-on(#10b981);
+		}
+
+		.contrast-yellow {
+			background: #fbbf24;
+			color: --text-on(#fbbf24);
+		}
+
+		.contrast-red {
+			background: #ef4444;
+			color: --text-on(#ef4444);
+		}
+
+		.contrast-gray {
+			background: #6b7280;
+			color: --text-on(#6b7280);
+		}
+
+		.contrast-dark {
+			background: #1f2937;
+			color: --text-on(#1f2937);
+		}
+
+		.contrast-black {
+			background: black;
+			color: --text-on(black);
+		}
+
 		/* Spacing Demo */
 		.spacing-demo {
 			margin: --spacing(4) 0;
@@ -396,6 +474,61 @@
 				<div class="color-swatch color-rotated">Hue +90°</div>
 				<div class="color-swatch color-complement">Complement</div>
 				<div class="color-swatch color-inverted">Inverted</div>
+			</div>
+		</section>
+		<section>
+			<h2>WCAG Contrast (--text-on)</h2>
+			<p>
+				The <code>--text-on()</code> function automatically chooses black or white text
+				for optimal readability using WCAG 2.1 contrast calculations.
+			</p>
+			<div class="contrast-grid">
+				<div class="contrast-card contrast-white">
+					<span>White</span>
+					<code>#ffffff</code>
+				</div>
+				<div class="contrast-card contrast-light">
+					<span>Light Blue</span>
+					<code>#e0e7ff</code>
+				</div>
+				<div class="contrast-card contrast-yellow">
+					<span>Yellow</span>
+					<code>#fbbf24</code>
+				</div>
+				<div class="contrast-card contrast-blue">
+					<span>Blue</span>
+					<code>#3b82f6</code>
+				</div>
+				<div class="contrast-card contrast-purple">
+					<span>Purple</span>
+					<code>#8b5cf6</code>
+				</div>
+				<div class="contrast-card contrast-green">
+					<span>Green</span>
+					<code>#10b981</code>
+				</div>
+				<div class="contrast-card contrast-red">
+					<span>Red</span>
+					<code>#ef4444</code>
+				</div>
+				<div class="contrast-card contrast-gray">
+					<span>Gray</span>
+					<code>#6b7280</code>
+				</div>
+				<div class="contrast-card contrast-dark">
+					<span>Dark Gray</span>
+					<code>#1f2937</code>
+				</div>
+				<div class="contrast-card contrast-black">
+					<span>Black</span>
+					<code>#000000</code>
+				</div>
+			</div>
+			<div class="code-demo">
+				<code>
+					color: --text-on(var(--background-color));<br>
+					/* Automatically picks black or white for best contrast */
+				</code>
 			</div>
 		</section>
 		<section>

@@ -2,7 +2,7 @@
 
 Complete reference for all CSS custom functions in css-extras.
 
-**Total functions:** 36
+**Total functions:** 49
 
 ---
 
@@ -113,6 +113,110 @@ scale: --ratio(16px, 1em);
 
 ---
 
+## `--sign()`
+
+Returns the sign of a number (-1, 0, or 1).
+
+### Parameters
+
+- **`--value`** (`Number`): Input value.
+
+### Returns
+
+`Number`: -1 for negative, 1 for positive, 0 for zero.
+
+### Example
+
+```css
+transform: scaleX(--sign(var(--direction)));
+```
+
+---
+
+## `--round-to()`
+
+Rounds a value to the nearest multiple.
+
+### Parameters
+
+- **`--value`** (`Length`): Value to round.
+- **`--multiple`** (`Length`): Multiple to round to. Default: `1`
+
+### Returns
+
+`Length`: Rounded value.
+
+### Example
+
+```css
+width: --round-to(127px, 8px);
+```
+
+---
+
+## `--floor-to()`
+
+Rounds a value down to the nearest multiple (floor).
+
+### Parameters
+
+- **`--value`** (`Length`): Value to round down.
+- **`--multiple`** (`Length`): Multiple to round to. Default: `1`
+
+### Returns
+
+`Length`: Rounded down value.
+
+### Example
+
+```css
+width: --floor-to(127px, 8px);
+```
+
+---
+
+## `--ceil-to()`
+
+Rounds a value up to the nearest multiple (ceil).
+
+### Parameters
+
+- **`--value`** (`Length`): Value to round up.
+- **`--multiple`** (`Length`): Multiple to round to. Default: `1`
+
+### Returns
+
+`Length`: Rounded up value.
+
+### Example
+
+```css
+width: --ceil-to(127px, 8px);
+```
+
+---
+
+## `--hypot()`
+
+Calculates the hypotenuse using Pythagorean theorem.
+
+### Parameters
+
+- **`--a`** (`Length`): First side.
+- **`--b`** (`Length`): Second side.
+
+### Returns
+
+`Length`: Hypotenuse length.
+
+### Example
+
+```css
+diagonal: --hypot(100px, 100px);
+```
+
+---
+
 ## `--opacity()`
 
 Returns a semi-transparent version of any color.
@@ -137,7 +241,7 @@ background: --opacity(blue, 50%);
 ## `--tint()`
 
 Lightens a color by mixing with white.
-Uses OKLAB color space for perceptually uniform mixing.
+Uses OKLab color space for perceptually uniform mixing.
 
 ### Parameters
 
@@ -159,7 +263,7 @@ background: --tint(blue, 20%);
 ## `--shade()`
 
 Darkens a color by mixing with black.
-Uses OKLAB color space for perceptually uniform mixing.
+Uses OKLab color space for perceptually uniform mixing.
 
 ### Parameters
 
@@ -218,6 +322,28 @@ Uses OKLCH color space for perceptually uniform lightness adjustment. Maintains 
 
 ```css
 background: --lighten(blue, 20%);
+```
+
+---
+
+## `--darken()`
+
+Darkens a color by reducing lightness.
+Uses OKLCH color space for perceptually uniform lightness adjustment. Unlike `--shade()` which mixes with black, this directly reduces the lightness value.
+
+### Parameters
+
+- **`--color`** (`Color`): The base color.
+- **`--amount`** (`Number`): Lightness reduction (0-100%). Default: `10%`
+
+### Returns
+
+`Color`: Darkened color.
+
+### Example
+
+```css
+background: --darken(blue, 20%);
 ```
 
 ---
@@ -281,6 +407,134 @@ Inverts a color.
 
 ```css
 background: --invert(white);
+```
+
+---
+
+## `--grayscale()`
+
+Converts a color to grayscale.
+Uses OKLCH color space by setting chroma to 0.
+
+### Parameters
+
+- **`--color`** (`Color`): The color to convert.
+
+### Returns
+
+`Color`: Grayscale color.
+
+### Example
+
+```css
+filter: --grayscale(var(--brand-color));
+```
+
+---
+
+## `--text-on()`
+
+Returns black or white text color for optimal contrast on a background.
+
+### Parameters
+
+- **`--bg`** (`Color`): Background color.
+
+### Returns
+
+`Color`: Black or white for optimal readability.
+
+### Example
+
+```css
+color: --text-on(var(--bg-color));
+```
+
+---
+
+## `--opaque()`
+
+Removes transparency from a color, making it fully opaque.
+
+### Parameters
+
+- **`--color`** (`Color`): Color with alpha channel.
+
+### Returns
+
+`Color`: Fully opaque version of the color.
+
+### Example
+
+```css
+background: --opaque(var(--semi-transparent-bg));
+```
+
+---
+
+## `--mix()`
+
+Mixes two colors in OKLab color space.
+Uses perceptually uniform OKLab color space for natural-looking color mixing.
+
+### Parameters
+
+- **`--color1`** (`Color`): First color.
+- **`--color2`** (`Color`): Second color.
+- **`--amount`** (`Number`): Amount of second color to mix (0-100%). Default: `50%`
+
+### Returns
+
+`Color`: Mixed color.
+
+### Example
+
+```css
+background: --mix(red, blue, 30%);
+```
+
+---
+
+## `--triadic()`
+
+Returns a triadic color harmony.
+Triadic colors are evenly spaced around the color wheel (120° apart).
+
+### Parameters
+
+- **`--color`** (`Color`): Base color.
+- **`--index`** (`Number`): Which triadic color (1 or 2). Default: `1`
+
+### Returns
+
+`Color`: Triadic color.
+
+### Example
+
+```css
+color: --triadic(blue, 1);
+```
+
+---
+
+## `--tetradic()`
+
+Returns a tetradic (square) color harmony.
+Tetradic colors are evenly spaced around the color wheel (90° apart).
+
+### Parameters
+
+- **`--color`** (`Color`): Base color.
+- **`--index`** (`Number`): Which tetradic color (1, 2, or 3). Default: `1`
+
+### Returns
+
+`Color`: Tetradic color.
+
+### Example
+
+```css
+color: --tetradic(blue, 2);
 ```
 
 ---
@@ -356,7 +610,7 @@ Creates a modular scale value.
 ### Parameters
 
 - **`--base`** (`Number`): Base size. Default: `1rem`
-- **`--ratio`** (`Number`): Scale ratio (default: 1.25). Default: `1.25`
+- **`--ratio`** (`Number`): Scale ratio. Default: `1.25`
 - **`--step`** (`Number`): Step in the scale. Default: `0`
 
 ### Returns
@@ -418,7 +672,7 @@ line-height: --line-height-ratio(24px, 16px);
 ## `--line-height-unitless()`
 
 Creates unitless line height from font size (recommended for better inheritance).
-NOTE: Only works correctly with pixel font sizes. For rem/em values, use `--line-height()` instead.
+NOTE: Only works correctly with pixel font sizes. For rem/em values, use `--line-height-length()` or `--line-height-ratio()` instead.
 
 ### Parameters
 
@@ -521,6 +775,28 @@ Calculates height from aspect ratio and maximum constraints.
 
 ```css
 height: --aspect-height(16/9, 100vw, 100vh);
+```
+
+---
+
+## `--aspect-width()`
+
+Calculates width from aspect ratio and maximum constraints.
+
+### Parameters
+
+- **`--ratio`** (`Number`): Aspect ratio (e.g., 16/9). Default: `1`
+- **`--max-height`** (`Length`): Maximum height. Default: `100%`
+- **`--max-width`** (`Length`): Maximum width. Default: `100%`
+
+### Returns
+
+`Length`: Computed width.
+
+### Example
+
+```css
+width: --aspect-width(16/9, 100vh, 100vw);
 ```
 
 ---
@@ -697,7 +973,7 @@ grid-column: --grid-span(3, 12);
 ## `--smooth-shadow()`
 
 Creates a smooth shadow.
-Generates 3 shadow layers. The spread-factor controls how distributed the shadows are.
+Generates three shadow layers. The spread-factor controls how distributed the shadows are.
 
 ### Parameters
 

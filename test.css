@@ -43,6 +43,28 @@
 	--test-ratio-dimension: --ratio(8px * 2, 0.55em + 0.45em); /* Expected: 1.6 */
 	--test-ratio-number: --ratio(8 * 2, 5.5 + 4.5); /* Expected: 1.6 */
 	--test-ratio-percentage: --ratio(80% * 2, 55% + 45%); /* Expected: 1.6 */
+
+	/* --sign() tests */
+	--test-sign-positive: --sign(10); /* Expected: 1 */
+	--test-sign-negative: --sign(-10); /* Expected: -1 */
+	--test-sign-zero: --sign(0); /* Expected: 0 */
+
+	/* --round-to() tests */
+	--test-round-to-8: --round-to(127px, 8px); /* Expected: 128px */
+	--test-round-to-5: --round-to(13px, 5px); /* Expected: 15px */
+	--test-round-to-default: --round-to(17px); /* Expected: 17px */
+
+	/* --floor-to() tests */
+	--test-floor-to-8: --floor-to(127px, 8px); /* Expected: 120px */
+	--test-floor-to-5: --floor-to(13px, 5px); /* Expected: 10px */
+
+	/* --ceil-to() tests */
+	--test-ceil-to-8: --ceil-to(121px, 8px); /* Expected: 128px */
+	--test-ceil-to-5: --ceil-to(11px, 5px); /* Expected: 15px */
+
+	/* --hypot() tests */
+	--test-hypot-3-4: --hypot(3px, 4px); /* Expected: 5px */
+	--test-hypot-equal: --hypot(10px, 10px); /* Expected: ~14.14px */
 }
 
 /* ===================================
@@ -71,6 +93,10 @@
 	--test-lighten: --lighten(blue, 20%);
 	--test-lighten-default: --lighten(blue);
 
+	/* --darken() tests */
+	--test-darken: --darken(blue, 20%);
+	--test-darken-default: --darken(blue);
+
 	/* --rotate-hue() tests */
 	--test-rotate-90: --rotate-hue(red, 90deg);
 	--test-rotate-180: --rotate-hue(red, 180deg);
@@ -83,6 +109,33 @@
 	/* --invert() tests */
 	--test-invert-white: --invert(white); /* Expected: black */
 	--test-invert-black: --invert(black); /* Expected: white */
+
+	/* --grayscale() tests */
+	--test-grayscale-red: --grayscale(red);
+	--test-grayscale-blue: --grayscale(blue);
+
+	/* --opaque() tests */
+	--test-opaque-semi: --opaque(rgb(255 0 0 / 0.5)); /* Expected: rgb(255 0 0 / 1) */
+	--test-opaque-transparent: --opaque(rgb(0 255 0 / 0)); /* Expected: rgb(0 255 0 / 1) */
+
+	/* --mix() tests */
+	--test-mix-equal: --mix(red, blue, 50%);
+	--test-mix-more-blue: --mix(red, blue, 75%);
+	--test-mix-default: --mix(red, blue);
+
+	/* --triadic() tests */
+	--test-triadic-1: --triadic(red, 1); /* Expected: +120deg hue */
+	--test-triadic-2: --triadic(red, 2); /* Expected: +240deg hue */
+
+	/* --tetradic() tests */
+	--test-tetradic-1: --tetradic(red, 1); /* Expected: +90deg hue */
+	--test-tetradic-2: --tetradic(red, 2); /* Expected: +180deg hue */
+	--test-tetradic-3: --tetradic(red, 3); /* Expected: +270deg hue */
+
+	/* --text-on() tests */
+	--test-text-on-white: --text-on(white); /* Expected: black */
+	--test-text-on-black: --text-on(black); /* Expected: white */
+	--test-text-on-gray: --text-on(#808080);
 
 	/* --black() and --white() tests */
 	--test-black-50: --black(50%);
@@ -131,6 +184,11 @@
 	--test-aspect-square: --aspect-height(1, 100px, 100px);
 	--test-aspect-wide: --aspect-height(1.777, 100px, 100px); /* 16:9 */
 	--test-aspect-default: --aspect-height();
+
+	/* --aspect-width() tests */
+	--test-aspect-width-square: --aspect-width(1, 100px, 100px);
+	--test-aspect-width-wide: --aspect-width(1.777, 100px, 200px); /* 16:9 */
+	--test-aspect-width-default: --aspect-width();
 }
 
 /* ===================================
@@ -171,11 +229,6 @@
 	 =================================== */
 
 .test-utility {
-	/* --fallback() tests */
-	--test-fallback-first: --fallback(10px, 20px, 30px); /* Expected: 10px */
-	--test-fallback-second: --fallback(var(--undefined), 20px, 30px); /* Expected: 20px */
-	--test-fallback-third: --fallback(var(--undefined), var(--undefined), 30px); /* Expected: 30px */
-
 	/* --px-to-rem() tests */
 	--test-px-to-rem-16: --px-to-rem(16px); /* Expected: 1rem */
 	--test-px-to-rem-24: --px-to-rem(24px); /* Expected: 1.5rem */
