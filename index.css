@@ -279,7 +279,7 @@ Returns black or white text color for optimal contrast on a background.
 @example color: --text-on(var(--bg-color));
 */
 @function --text-on(--bg) {
-	result: hwb(from oklch(from var(--bg) l 0 0) h calc((w - 50) * 999) calc((b - 50) * 999));
+	result: hwb(from oklch(from var(--bg) l 0 0) h calc((b - 50) * 999) calc((w - 50) * 999));
 }
 
 /**
