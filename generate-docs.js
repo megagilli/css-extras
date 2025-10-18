@@ -33,6 +33,9 @@ function parseCSSFunctions(cssContent) {
 		const parametersString = match[2];
 		const functionIndex = match.index;
 
+		// Calculate line number
+		const lineNumber = cssContent.slice(0, functionIndex).split('\n').length;
+
 		// Find the comment that immediately precedes this function
 		let functionComment = null;
 		for (let i = comments.length - 1; i >= 0; i--) {
@@ -50,6 +53,7 @@ function parseCSSFunctions(cssContent) {
 			functions.push({
 				name: functionName,
 				parameters: parseParameters(parametersString),
+				lineNumber,
 				...documentation,
 			});
 		}
@@ -149,7 +153,8 @@ function generateMarkdown(functions) {
 
 	// Generate function documentation (no categorization)
 	for (const cssFunction of functions) {
-		markdown += `## \`${cssFunction.name}()\`\n\n`;
+		const sourceUrl = `../index.css#L${cssFunction.lineNumber}`;
+		markdown += `## \`${cssFunction.name}()\` [↗︎](${sourceUrl})\n\n`;
 
 		if (cssFunction.description) {
 			markdown += `${cssFunction.description}\n\n`;
