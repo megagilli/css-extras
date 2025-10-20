@@ -28,18 +28,6 @@ const tests = [
 		expected: 'calc(-1 * -10px)',
 	},
 	{
-		name: '--abs(10px)',
-		selector: '.test-math',
-		property: '--test-abs-positive',
-		expected: 'max(10px, calc(-1 * 10px))',
-	},
-	{
-		name: '--abs(-10px)',
-		selector: '.test-math',
-		property: '--test-abs-negative',
-		expected: 'max(-10px, calc(-1 * -10px))',
-	},
-	{
 		name: '--lerp(0px, 100px, 0.5)',
 		selector: '.test-math',
 		property: '--test-lerp-half',
@@ -191,12 +179,6 @@ const tests = [
 		selector: '.test-edge-cases',
 		property: '--test-negate-zero',
 		expected: 'calc(-1 * 0)',
-	},
-	{
-		name: '--abs(0) should return 0',
-		selector: '.test-edge-cases',
-		property: '--test-abs-zero',
-		expected: 'max(0, calc(-1 * 0))',
 	},
 	{
 		name: '--spacing(0) should return base value',

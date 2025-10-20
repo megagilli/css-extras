@@ -19,15 +19,9 @@ test('CSS file exists and is valid', () => {
 	const functions = [
 		// Math & Number
 		'--negate',
-		'--abs',
 		'--lerp',
 		'--map-range',
 		'--ratio',
-		'--sign',
-		'--round-to',
-		'--floor-to',
-		'--ceil-to',
-		'--hypot',
 		// Color
 		'--opacity',
 		'--tint',

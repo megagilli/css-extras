@@ -37,7 +37,7 @@ Then use any of the functions in your CSS:
 .element {
 	/* Math functions */
 	padding: --negate(var(--spacing));
-	margin: --abs(-20px);
+	width: --lerp(100px, 200px, 0.5);
 
 	/* Color functions */
 	background: --opacity(blue, 50%);
@@ -57,7 +57,7 @@ Then use any of the functions in your CSS:
 
 ## Functions
 
-This package includes ~50 CSS custom functions organized into these categories:
+This package includes ~43 CSS custom functions organized into these categories:
 
 - **Math & Number** - Mathematical operations and calculations
 - **Color** - Color manipulation, generation, and accessibility helpers

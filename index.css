@@ -21,17 +21,6 @@ Negates a value (returns the negative).
 }
 
 /**
-Returns the absolute value of a number.
-
-@param {Number} --value - The input value.
-@returns {Number} The absolute value.
-@example margin: --abs(-20px);
-*/
-@function --abs(--value) {
-	result: max(var(--value), calc(-1 * var(--value)));
-}
-
-/**
 Linear interpolation between two values.
 
 @param {Number} --from - Start value.
@@ -70,65 +59,6 @@ Returns the ratio of two values. Supports values with different units, unlike re
 */
 @function --ratio(--value, --to-value) {
 	result: tan(atan2(var(--value), var(--to-value)));
-}
-
-/**
-Returns the sign of a number (-1, 0, or 1).
-
-@param {Number} --value - Input value.
-@returns {Number} -1 for negative, 1 for positive, 0 for zero.
-@example transform: scaleX(--sign(var(--direction)));
-*/
-@function --sign(--value) {
-	result: clamp(-1, calc(var(--value) * 999999), 1);
-}
-
-/**
-Rounds a value to the nearest multiple.
-
-@param {Length} --value - Value to round.
-@param {Length} --multiple - Multiple to round to.
-@returns {Length} Rounded value.
-@example width: --round-to(127px, 8px);
-*/
-@function --round-to(--value, --multiple: 1) {
-	result: calc(round(var(--value) / var(--multiple)) * var(--multiple));
-}
-
-/**
-Rounds a value down to the nearest multiple (floor).
-
-@param {Length} --value - Value to round down.
-@param {Length} --multiple - Multiple to round to.
-@returns {Length} Rounded down value.
-@example width: --floor-to(127px, 8px);
-*/
-@function --floor-to(--value, --multiple: 1) {
-	result: calc(round(down, var(--value) / var(--multiple)) * var(--multiple));
-}
-
-/**
-Rounds a value up to the nearest multiple (ceil).
-
-@param {Length} --value - Value to round up.
-@param {Length} --multiple - Multiple to round to.
-@returns {Length} Rounded up value.
-@example width: --ceil-to(127px, 8px);
-*/
-@function --ceil-to(--value, --multiple: 1) {
-	result: calc(round(up, var(--value) / var(--multiple)) * var(--multiple));
-}
-
-/**
-Calculates the hypotenuse using Pythagorean theorem.
-
-@param {Length} --a - First side.
-@param {Length} --b - Second side.
-@returns {Length} Hypotenuse length.
-@example diagonal: --hypot(100px, 100px);
-*/
-@function --hypot(--a, --b) {
-	result: sqrt(calc(var(--a) * var(--a) + var(--b) * var(--b)));
 }
 
 /* ===================================

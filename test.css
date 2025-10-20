@@ -23,11 +23,6 @@
 	--test-negate-negative: --negate(-10px); /* Expected: 10px */
 	--test-negate-zero: --negate(0); /* Expected: 0 */
 
-	/* --abs() tests */
-	--test-abs-positive: --abs(10px); /* Expected: 10px */
-	--test-abs-negative: --abs(-10px); /* Expected: 10px */
-	--test-abs-zero: --abs(0); /* Expected: 0 */
-
 	/* --lerp() tests */
 	--test-lerp-half: --lerp(0px, 100px, 0.5); /* Expected: 50px */
 	--test-lerp-zero: --lerp(0px, 100px, 0); /* Expected: 0px */
@@ -44,27 +39,6 @@
 	--test-ratio-number: --ratio(8 * 2, 5.5 + 4.5); /* Expected: 1.6 */
 	--test-ratio-percentage: --ratio(80% * 2, 55% + 45%); /* Expected: 1.6 */
 
-	/* --sign() tests */
-	--test-sign-positive: --sign(10); /* Expected: 1 */
-	--test-sign-negative: --sign(-10); /* Expected: -1 */
-	--test-sign-zero: --sign(0); /* Expected: 0 */
-
-	/* --round-to() tests */
-	--test-round-to-8: --round-to(127px, 8px); /* Expected: 128px */
-	--test-round-to-5: --round-to(13px, 5px); /* Expected: 15px */
-	--test-round-to-default: --round-to(17px); /* Expected: 17px */
-
-	/* --floor-to() tests */
-	--test-floor-to-8: --floor-to(127px, 8px); /* Expected: 120px */
-	--test-floor-to-5: --floor-to(13px, 5px); /* Expected: 10px */
-
-	/* --ceil-to() tests */
-	--test-ceil-to-8: --ceil-to(121px, 8px); /* Expected: 128px */
-	--test-ceil-to-5: --ceil-to(11px, 5px); /* Expected: 15px */
-
-	/* --hypot() tests */
-	--test-hypot-3-4: --hypot(3px, 4px); /* Expected: 5px */
-	--test-hypot-equal: --hypot(10px, 10px); /* Expected: ~14.14px */
 }
 
 /* ===================================
@@ -307,7 +281,7 @@
 /* Use these classes to visually verify function outputs */
 .visual-test {
 	/* Math tests visual */
-	width: --abs(-100px); /* Should be 100px */
+	width: 100px;
 	margin-left: --negate(20px); /* Should be -20px */
 	padding: --spacing(2); /* Should be 1rem */
 
@@ -343,12 +317,6 @@
 		--actual: --negate(10px);
 	};
 
-	--assert-abs: {
-		--input: -10px;
-		--expected: 10px;
-		--actual: --abs(-10px);
-	};
-
 	--assert-lerp: {
 		--from: 0px;
 		--to: 100px;
@@ -371,7 +339,6 @@
 .test-edge-cases {
 	/* Zero value tests */
 	--test-negate-zero: --negate(0);
-	--test-abs-zero: --abs(0);
 	--test-spacing-zero: --spacing(0);
 
 	/* Large value tests */
