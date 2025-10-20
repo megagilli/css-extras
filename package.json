@@ -1,6 +1,6 @@
 {
 	"name": "css-extras",
-	"version": "0.3.1",
+	"version": "0.4.0",
 	"description": "Useful CSS custom functions using the new @function rule",
 	"license": "MIT",
 	"repository": "sindresorhus/css-extras",
